@@ -27,4 +27,4 @@ jobs:
           git config --global user.email 'action@github.com'
           git add newfile.html
           git commit -m "Add generated HTML file" -a || exit 0
-          git push https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+          git push https://${{ secrets.blog-token }}@github.com/${{ github.repository }}.git
