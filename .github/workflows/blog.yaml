@@ -23,8 +23,8 @@ jobs:
 
       - name: Commit and push if it changed
         run: |
-          git config --global user.name 'GitHub Action'
-          git config --global user.email 'action@github.com'
+          git config --global user.name 'Mueed Qadri'
+          git config --global user.email 'mueedq12@gmail.com'
           git add newfile.html
           git commit -m "Add generated HTML file" -a || exit 0
           git push https://${{ secrets.blog-token }}@github.com/${{ github.repository }}.git
