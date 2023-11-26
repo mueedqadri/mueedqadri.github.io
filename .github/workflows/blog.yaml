@@ -1,0 +1,29 @@
+name: Generate HTML and commit
+
+on:
+  workflow_dispatch:
+    inputs:
+      fileContent:
+        description: 'Content for the new HTML file'     
+        required: true
+        default: '<h1>Hello, World!</h1>'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Generate HTML file
+        run: |
+          echo "${{ github.event.inputs.fileContent }}" > newfile.html
+
+      - name: Commit and push if it changed
+        run: |
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
+          git add -A
+          git diff --quiet && git diff --staged --quiet || git commit -m "Add generated HTML file"
+          git push
